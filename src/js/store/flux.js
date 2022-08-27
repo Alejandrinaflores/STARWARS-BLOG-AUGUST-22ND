@@ -1,42 +1,43 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			planets: [],
+			characters: [],
+			vehicles: [],
+			favorites: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			fetchData:() => {
+
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				if(!localStorage.getItem('store')) {
 
-				//reset the global store
-				setStore({ demo: demo });
+					fetch('https://swapi.dev/api/planets/')
+					.then(response => response.json())
+					.then(data => {
+						setStore({planets: data.results})
+						localStorage.setItem('store', JSON.stringify(store))
+					});
+	
+					fetch('https://swapi.dev/api/people/')
+					.then(response => response.json())
+					.then(data => {
+						setStore({characters: data.results})
+						localStorage.setItem('store', JSON.stringify(store))
+					});
+	
+					fetch('https://swapi.dev/api/vehicles/')
+					.then(response => response.json())
+					.then(data => {
+						setStore({vehicles: data.results})
+						localStorage.setItem('store', JSON.stringify(store))
+					});
+
+				} else {
+					setStore(JSON.parse(localStorage.getItem('store')));
+				}
+
 			}
 		}
 	};
