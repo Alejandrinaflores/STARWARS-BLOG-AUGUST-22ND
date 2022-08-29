@@ -37,7 +37,7 @@ const Layout = () => {
 							<VehiclesSingleCard />
 						</Route>
 						<Route>
-							<h1>Not found!</h1>
+							<Main />
 						</Route>
 					</Switch>
 					<Footer />

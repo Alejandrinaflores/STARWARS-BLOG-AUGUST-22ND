@@ -1,4 +1,4 @@
- body {
+body {
   background-image: url("https://www.todofondos.net/wp-content/uploads/fondos-de-estrellas-mejores-fondos-de-estrellas-gratis-wallpaperaccess.-fondo-de-pantalla-de-estrellas-scaled.jpg");
 }
 
@@ -19,7 +19,7 @@
   justify-content: space-between;
 }
 
-.big{
+.big {
   width: 700px;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,6 @@
 
 .card-img-top {
   width: 50%;
-  
 }
 
 .footer {
@@ -54,11 +53,18 @@
 
 h3 {
   width: 150px;
-color: rgb(29, 29, 30);
-  
+  color: rgb(29, 29, 30);
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(206, 212, 218, 0.773);
   margin-bottom: 5px;
+}
+
+.dropdown {
+  margin-right: 150px;
+}
+
+a {
+  cursor: pointer;
 }

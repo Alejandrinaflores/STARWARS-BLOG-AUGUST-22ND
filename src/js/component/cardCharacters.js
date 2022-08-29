@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const CardCharacters = ({ name, gender, hair_color, eye_color, url, index }) => {
+  
+  const { actions } = useContext(Context);
+
+  const handleFavorite = () => {
+    actions.addFavorite({ name , url, type: 'characters', index: index});
+  };
+  
   return (
     <div className="card">
       <img src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`} />
@@ -20,7 +29,7 @@ export const CardCharacters = ({ name, gender, hair_color, eye_color, url, index
         }}>
 					<button className="btn btn-primary">Learn more!</button>
 				</Link>
-        <button type="button" className="btn btn-warning">
+        <button onClick={() => handleFavorite()} type="button" className="btn btn-warning">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
